@@ -1,0 +1,113 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(48, 48, 48);
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover:not(.active) {
+    background-color: rgb(58, 58, 58);
+}
+
+.navbar .active {
+    background-color: #4CAF50;
+}
+
+body{
+    font-family: "Roboto", sans-serif;
+}
+
+.article ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.article li {
+    margin: auto;
+    width: 50%;
+    height: 200px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.432)
+}
+
+.post{
+    margin: auto;
+    width: 50%;
+    height: 200px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.432)
+}
+
+textarea{
+    display: block;
+    width: 90%;
+    height: 70%;
+    border: 0px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    margin: auto;
+    resize: none;
+}
+
+input[type=submit] {
+    position: relative;
+    top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.photo{
+    width: 200px;
+    position: relative;
+    top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+}
+
+.video{
+    width: 200px;
+    position: relative;
+    top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    left: 10px;
+    cursor: pointer;
+    float: left;
+}

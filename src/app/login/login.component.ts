@@ -20,7 +20,7 @@ export class LoginComponent{
         console.log('res',res);
         if(res){
           this.login.setLoggedin(res);
-        this.router.navigate(['home']);
+          this.router.navigate(['home']);
         }
         else{
           window.alert("Wrong email and/or password!");

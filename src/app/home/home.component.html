@@ -1,3 +1,38 @@
-<p>
-  home works! OMEGALUL 12
-</p>
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <div class = "navbar">
+      <ul>
+        <li><a href="home">Home</a></li>
+        <li><a href="network">Network</a></li>
+        <li><a href="announcements">Announcements</a></li>
+        <li><a href="messages">Messages</a></li>
+        <li><a href="notifications">Notifications</a></li>
+        <li><a href="personalinfo">Personal Info</a></li>
+        <li><a routerLink="/settings">Settings</a></li>
+      </ul>
+    </div>
+    
+
+    <br>
+
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
+      <div class="post">
+        <textarea  placeholder="some text..." ngModel name="postText"></textarea>
+        <input class="photo" type="file" id="photo">
+        <input class="video" type="file" id="video">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+    <div class="article">
+        <ul>
+          <li *ngFor="let article of articles">
+            {{article.text}}
+          </li>
+        </ul>
+    </div>
+    
+
+  </body>
+</html>
