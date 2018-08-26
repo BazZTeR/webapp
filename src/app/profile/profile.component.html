@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <body>
+
+    <div class = "navbar">
+      <ul>
+        <li><a href="home">Home</a></li>
+        <li><a href="network">Network</a></li>
+        <li><a href="announcements">Announcements</a></li>
+        <li><a href="messages">Messages</a></li>
+        <li><a href="notifications">Notifications</a></li>
+        <li><a href="profile/me">Profile</a></li>
+        <li><a routerLink="/settings">Settings</a></li>
+      </ul>
+    </div>
+
+    <div *ngIf="displaySwitch; then profile; else edit"></div>
+    <ng-template #profile>
+      <div class="profile-card">
+          <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+          <div class="container">
+            <h4>
+              <b>{{user.firstname}} {{user.lastname}}</b>
+              <div *ngIf="myprofile; then editProfile; else addFriend;"></div>
+              <ng-template #addFriend>
+                <button class="friendbutton" (click)="onClick()">{{friendStatus}}</button>
+              </ng-template>
+              <ng-template #editProfile>
+                <button class="friendbutton">Edit Profile</button>
+              </ng-template>
+            </h4> 
+            
+            <p><i class="material-icons">email</i> {{user.email}}</p> 
+            <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+          </div>
+      </div>
+      <div class="big-card">
+          <div class="container">
+            <h1>
+              <b>Work Experience</b>
+            </h1> 
+            <p>work experience text...</p> 
+          </div>
+      </div>
+      <div class="big-card">
+          <div class="container">
+            <h1>
+              <b>Education</b>
+            </h1> 
+            <p>education text...</p> 
+          </div>
+      </div>
+      <div class="big-card">
+          <div class="container">
+            <h1>
+              <b>Skills</b>
+            </h1> 
+            <p>skills text...</p> 
+          </div>
+      </div>
+    </ng-template>
+
+      <ng-template #edit>
+        <div class="container">
+          <table>
+            <tr *ngFor="let user of users">
+              <th><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></th>
+            </tr>
+          </table>
+        </div>
+      </ng-template>
+    
+    
+    
+
+  </body>
+</html>

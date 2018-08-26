@@ -1,33 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class NotificationsService {
 
   constructor(private http:HttpClient,private sessionSt:SessionStorageService) { }
 
-  post(postText){
+  getFriendRequests(){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
-      }),
+      })
     };
-    return this.http.post<boolean>('http://localhost:8080/post',postText,httpOptions);
+    return this.http.get('http://localhost:8080/friendRequests',httpOptions);
   }
 
-  getArticles(){
-    console.log("getting articles...");
+  Accept(email){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
-      }),
+      })
     };
-    return this.http.get('http://localhost:8080/articles',httpOptions);
+    return this.http.post('http://localhost:8080/accept',email,httpOptions);
+  }
+
+  Decline(email){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      })
+    };
+    return this.http.post('http://localhost:8080/decline',email,httpOptions);
   }
 
 }

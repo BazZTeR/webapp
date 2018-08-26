@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+
+    <div class = "navbar">
+      <ul>
+        <li><a href="home">Home</a></li>
+        <li><a href="network">Network</a></li>
+        <li><a href="announcements">Announcements</a></li>
+        <li><a href="messages">Messages</a></li>
+        <li><a href="notifications">Notifications</a></li>
+        <li><a href="profile/me">Profile</a></li>
+        <li><a routerLink="/settings">Settings</a></li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <table>
+        <tr *ngFor="let user of users">
+          <th><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a><button class="button button3" (click)="Decline(user.email)">Decline</button> <button class="button button1" (click)="Accept(user.email)">Accept</button></th>
+        </tr>
+      </table>
+    </div>
+    <div class="container">
+      <table>
+        <tr>
+          <th>lul1</th>
+        </tr>
+        <tr>
+          <th>lul2</th>
+        </tr>
+        <tr>
+          <th>lul3</th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -10,6 +10,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { NetworkComponent } from './network/network.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { SettingsComponent } from './settings/settings.component';
     SignupComponent,
     HomeComponent,
     SettingsComponent,
+    NetworkComponent,
+    ProfileComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

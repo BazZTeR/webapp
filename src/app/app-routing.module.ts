@@ -4,16 +4,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent }   from './login/login.component';
 import { SignupComponent }  from './signup/signup.component';
 import { HomeComponent }    from './home/home.component';
+import { SettingsComponent } from './settings/settings.component';
+import { NetworkComponent } from './network/network.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 import { AuthGuard } from './auth.guard';
-import { SettingsComponent } from './settings/settings.component';
  
 const routes: Routes = [
   // { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, /*canActivate: [AuthGuard]*/ },
-  { path: 'settings', component: SettingsComponent }
+  { path: 'settings', component: SettingsComponent },
+  { path: 'network', component: NetworkComponent },
+  { path: 'profile/:email', component: ProfileComponent},
+  { path: 'notifications', component: NotificationsComponent},
 ];
  
 @NgModule({

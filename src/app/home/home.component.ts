@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HomeService } from '../services/home.service';
-import { Article } from './article';
-import { text } from '@angular/core/src/render3/instructions';
+import { Article } from '../entities/article';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +18,6 @@ export class HomeComponent implements OnInit {
   articles: Article[] = [];
 
   ngOnInit() {
-    console.log("calling getArticles()")
     this.home.getArticles().subscribe(
       (articles: any[]) => {
         console.log(articles);
@@ -27,7 +25,6 @@ export class HomeComponent implements OnInit {
           console.log(i);
           console.log(articles[i].text);
           this.articles[i] = articles[i];
-          
         }
       }
     );
