@@ -2,6 +2,7 @@
 <html>
   <head>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
 
@@ -9,7 +10,7 @@
       <ul>
         <li><a href="home">Home</a></li>
         <li><a href="network">Network</a></li>
-        <li><a href="announcements">Announcements</a></li>
+        <li><a href="jobs">Jobs</a></li>
         <li><a href="messages">Messages</a></li>
         <li><a href="notifications">Notifications</a></li>
         <li><a href="profile/me">Profile</a></li>
@@ -27,7 +28,18 @@
 
     <div *ngIf="displaySwitch; then network; else search"></div>
     <ng-template #network>
-      This is network
+      <div class="flex-container">
+          <div class="profile-card" *ngFor="let user of users">
+            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+            <div>
+              <h4>
+                <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
+              </h4> 
+              <p><i class="material-icons">email</i> {{user.email}}</p> 
+              <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+            </div>
+          </div>
+      </div>
     </ng-template>
 
       <ng-template #search>

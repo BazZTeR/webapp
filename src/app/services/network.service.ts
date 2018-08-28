@@ -19,4 +19,14 @@ export class NetworkService {
     };
     return this.http.get('http://localhost:8080/search',httpOptions);
   }
+
+  getNetworkUsers(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      })
+    };
+    return this.http.get('http://localhost:8080/networkUsers',httpOptions);
+  }
 }

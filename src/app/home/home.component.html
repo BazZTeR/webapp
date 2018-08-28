@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <body>
 
     <div class = "navbar">
@@ -13,25 +16,44 @@
         <li><a routerLink="/settings">Settings</a></li>
       </ul>
     </div>
-    
 
-    <br>
-
-    <form (ngSubmit)="onSubmit()" #f="ngForm">
-      <div class="post">
-        <textarea  placeholder="some text..." ngModel name="postText"></textarea>
-        <input class="photo" type="file" id="photo">
-        <input class="video" type="file" id="video">
-        <input type="submit" value="Submit">
-      </div>
-    </form>
-    <div class="article">
-        <ul>
-          <li *ngFor="let article of articles">
-            {{article.text}}
-          </li>
-        </ul>
+    <div class="profile-card">
+      <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+      <h4>
+        <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
+      </h4> 
+      <p><i class="fas fa-users"></i> <a href="network">Network</a> </p> 
+      <p><i class="material-icons">email</i> {{user.email}}</p> 
+      <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
     </div>
+    <div class="posts">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+          <div class="post">
+            <textarea  placeholder="some text..." ngModel name="postText"></textarea>
+            <input class="photo" type="file" id="photo">
+            <input class="video" type="file" id="video">
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+        <div class="list">
+          <ul>
+            <li *ngFor="let article of articles;let i = index;" class="article-container">
+              {{article.user.firstname}} {{article.user.lastname}} posted: <br> {{article.text}} 
+              <br>
+              <button class="button" (click)="onLike(article.id,article.like.status)">{{article.like.status}}</button>
+              <input type="text" placeholder="Post a comment..." [(ngModel)]="commentForPost[i]">
+              <button class="button" (click)="onPost(article.id,commentForPost[i])">Post</button>
+              <ul>
+                <li class="comment" *ngFor="let comment of commentsArray[i]">
+                    {{comment.user.firstname}} {{comment.user.lastname}}: {{comment.text}}
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    </div>
+    
+    
     
 
   </body>

@@ -17,7 +17,17 @@ export class NetworkComponent implements OnInit {
   constructor(private network:NetworkService) { }
 
   ngOnInit() {
-    console.log("initializing network");
+    this.network.getNetworkUsers().subscribe(
+      (users: any[]) => {
+        console.log(users);
+        for(var i in users){
+          console.log(i);
+          console.log(users[i]);
+          console.log(users[i].firstname+ " " +users[i].lastname);
+          this.users[i] = users[i];
+        }
+      }
+    );
   }
 
   onSubmit(){
