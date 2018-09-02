@@ -18,9 +18,13 @@ export class LoginComponent{
     this.login.login(this.loginform.value.email,this.loginform.value.password).subscribe(
       res=>{
         console.log('res',res);
-        if(res){
-          this.login.setLoggedin(res);
+        if(res==1){
+          this.login.setLoggedin(res); 
           this.router.navigate(['home']);
+        }
+        else if(res==2)
+        {
+          this.router.navigate(['admin']);
         }
         else{
           window.alert("Wrong email and/or password!");

@@ -13,6 +13,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NetworkComponent } from './network/network.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     NetworkComponent,
     ProfileComponent,
     NotificationsComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
