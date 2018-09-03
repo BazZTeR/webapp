@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   constructor(private admin:AdminService) { }
 
   ngOnInit() {
+    this.users=[];
     this.admin.getAllUsers().subscribe(
       (users: any[]) => {
         console.log(users);
@@ -31,6 +32,7 @@ export class AdminComponent implements OnInit {
   }
 
   onSubmit(){
+    this.users=[];
     console.log(this.search);
     console.log(this.search.value.search);
     this.admin.search(this.search.value.search).subscribe(
