@@ -29,6 +29,6 @@ export class LoginService {
         'Authorization': 'Basic ' + btoa(email+':'+password)
       }),
     };
-    return this.http.get<any>('http://localhost:8080/login',httpOptions);
+    return this.http.get<boolean>('http://localhost:8080/login',httpOptions);
   }
 }
