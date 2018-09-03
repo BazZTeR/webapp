@@ -16,6 +16,11 @@ export class SignupComponent{
   onSubmit(){
     console.log("submitted");
     console.log(this.signupForm);
+    if(this.signupForm.value.email=="admin")
+    {
+      window.alert("Cannot enter that username");
+      return;
+    }
     if(this.signupForm.value.password != this.signupForm.value.confirm_password){
       window.alert("Password doesnt match with Confirm password");
     }
