@@ -78,30 +78,6 @@ export class HomeComponent implements OnInit {
 
             });
 
-        
-        
-        // for(var i in articles){
-        //   this.home.getLike(articles[i].id).subscribe(
-        //     (like: MyLike) => {
-        //       if(like!=null){
-        //         console.log("Like status: ",like.status);
-        //         this.articles[i].like = like;
-        //         if(this.articles[i].like.status == "Like"){
-        //           this.articles[i].like.status = "Dislike";
-        //         }
-        //       }
-        //       else{
-        //         console.log("Like status: null");
-        //         this.articles[i].like = new MyLike();
-        //         this.articles[i].like.status = "Like";
-        //       }
-        //     }
-        //   );
-          
-        // }
-
-
-
       }
     );
   }

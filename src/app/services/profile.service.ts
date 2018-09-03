@@ -41,4 +41,15 @@ export class ProfileService {
     };
     return this.http.get('http://localhost:8080/friendshipStatus',httpOptions);
   }
+
+  editProfile(name,phone,workExp,eduExp,skillsExp){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      }),
+      params: new HttpParams().set('name',name).set('phone',phone).set('workExp',workExp).set('eduExp',eduExp).set('skillsExp',skillsExp),
+    };
+    return this.http.put('http://localhost:8080/editProfile',null,httpOptions);
+  }
 }
