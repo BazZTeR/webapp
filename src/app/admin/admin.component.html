@@ -1,3 +1,44 @@
-<p>
-  admin works!
-</p>
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+
+
+    <div class="search-container">
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <input type="text" placeholder="Search..." ngModel name=search>
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+
+    <div *ngIf="displaySwitch; then admin; else search"></div>
+    <ng-template #admin>
+      <div class="flex-container">
+          <div class="profile-card" *ngFor="let user of users">
+            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+            <div>
+              <h4>
+                <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
+              </h4> 
+              <p><i class="material-icons">email</i> {{user.email}}</p> 
+              <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+            </div>
+          </div>
+      </div>
+    </ng-template>
+    
+    <ng-template #search>
+      <div class="container">
+        <table>
+          <tr *ngFor="let user of users">
+            <th><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></th>
+          </tr>
+        </table>
+      </div>
+    </ng-template>
+
+  </body>
+</html>
