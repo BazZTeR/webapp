@@ -31,6 +31,7 @@ export class NetworkComponent implements OnInit {
   }
 
   onSubmit(){
+    this.users = [];
     console.log(this.search);
     console.log(this.search.value.search);
     this.network.search(this.search.value.search).subscribe(

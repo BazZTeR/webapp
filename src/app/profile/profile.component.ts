@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { SessionStorageService } from 'ngx-webstorage';
 import { ProfileService } from '../services/profile.service';
 import { User } from '../entities/user';
@@ -11,6 +12,7 @@ import { NotificationsService } from '../services/notifications.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild('f') form: NgForm;
 
   displaySwitch = true;
   myprofile = false;
@@ -64,6 +66,14 @@ export class ProfileComponent implements OnInit {
       this.notifications.Decline(this.user.email).subscribe();
       this.friendStatus = "Add Friend";
     }
+  }
+
+  editProf(){
+    this.displaySwitch = false;
+  }
+
+  saveChanges(){
+    this.profile.editProfile(this.form.value.name,this.form.value.phone,this.form.value.workExp,this.form.value.eduExp,this.form.value.skillsExp).subscribe();
   }
 
 }

@@ -16,6 +16,7 @@
     </div>
 
     <div *ngIf="displaySwitch; then profile; else edit"></div>
+    <!-- profile template -->
     <ng-template #profile>
       <div class="profile-card">
           <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
@@ -27,7 +28,7 @@
                 <button class="friendbutton" (click)="onClick()">{{friendStatus}}</button>
               </ng-template>
               <ng-template #editProfile>
-                <button class="friendbutton">Edit Profile</button>
+                <button class="friendbutton" (click)="editProf()">Edit Profile</button>
               </ng-template>
             </h4> 
             
@@ -60,16 +61,49 @@
           </div>
       </div>
     </ng-template>
+      <!-- edit profile template -->
+        <ng-template #edit>
+            <form (ngSubmit)="saveChanges()" #f="ngForm">
+          <div class="profile-card">
+            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+            <div class="container">
+              <h4>
+                  <input type="text" placeholder="Change Name" ngModel name="name">
 
-      <ng-template #edit>
-        <div class="container">
-          <table>
-            <tr *ngFor="let user of users">
-              <th><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></th>
-            </tr>
-          </table>
+                <input class="friendbutton" type="submit" value="Save Changes">
+              </h4> 
+              
+              <p><i class="material-icons">email</i> {{user.email}}</p> 
+              <p><i class="material-icons">contact_phone</i> <input type="text" placeholder="Change Phone" ngModel name="phone"></p> 
+            </div>
         </div>
-      </ng-template>
+        <div class="big-card">
+            <div class="container">
+              <h1>
+                <b>Work Experience</b>
+              </h1> 
+              <textarea placeholder="some text..." ngModel name="workExp"></textarea>
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="container">
+              <h1>
+                <b>Education</b>
+              </h1> 
+              <textarea placeholder="some text..." ngModel name="eduExp"></textarea>
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="container">
+              <h1>
+                <b>Skills</b>
+              </h1> 
+              <textarea placeholder="some text..." ngModel name="skillsExp"></textarea>
+            </div>
+        </div>
+        </form>
+        </ng-template>
+    
     
     
     
