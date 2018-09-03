@@ -6,25 +6,29 @@
   </head>
   <body>
 
-
-    <div class="search-container">
-      <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <input type="text" placeholder="Search..." ngModel name=search>
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
+    <div class = "navbar">
+      <ul>
+          <li><a href="home">Download XML</a></li>
+        <li>
+          <div class="search-container">
+              <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <input type="text" placeholder="Search..." ngModel name=search>
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <div *ngIf="displaySwitch; then admin; else search"></div>
     <ng-template #admin>
-      <div class="flex-container">
-          <div class="profile-card" *ngFor="let user of users">
+      <div class="container">
+        <table>
+          <tr *ngFor="let user of users">
             <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
-            <div>
-              <h4>
-                <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
-              </h4> 
-            </div>
-          </div>
+            <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
+          </tr>
+        </table>
       </div>
     </ng-template>
     
