@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AdminService } from '../services/admin.service';
 import { User } from '../entities/user';
+import { FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-network',
@@ -13,8 +14,51 @@ export class AdminComponent implements OnInit {
 
   displaySwitch = true;
   users: User[] = [];
+  downloadSwitch=false;
+  name = 'Angular 6';
+  categories = [
+    {
+      id: 1,
+      name: 'CV'
+    },
+    {
+      id: 2,
+      name: 'Articles'
+    },
+    {
+      id: 3,
+      name: 'Announcements'
+    },
+    {
+      id: 4,
+      name: 'Professional Expertise'
+    },
+    {
+      id: 5,
+      name: 'Interests'
+    },
+    {
+      id: 6,
+      name: 'Comments'
+    },
+    {
+      id: 7,
+      name: 'Network'
+    },
+    
+  ];
 
-  constructor(private admin:AdminService) { }
+  categoriesSelected = [
+    false, false, false,false, false, false,false
+  ];
+
+  myGroup;  
+  
+  constructor(private formBuilder: FormBuilder, private admin:AdminService) {
+    this.myGroup = this.formBuilder.group({
+      myCategory: this.formBuilder.array(this.categoriesSelected)
+    });
+  }
 
   ngOnInit() {
     this.users=[];
@@ -51,6 +95,23 @@ export class AdminComponent implements OnInit {
       }
     );
     this.displaySwitch = false;
+  }
+
+  Download()
+  {
+    this.admin.getCV().subscribe(
+      (users: any[]) => {
+        console.log(users);
+        for(var i in users){
+          if(users[i].firstname=="admin")
+            continue;
+          console.log(i);
+          console.log(users[i]);
+          console.log(users[i].firstname+ " " +users[i].lastname);
+          this.users[i] = users[i];
+        }
+      }
+    );
   }
 
 }
