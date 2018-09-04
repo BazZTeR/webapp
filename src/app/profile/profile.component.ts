@@ -18,11 +18,17 @@ export class ProfileComponent implements OnInit {
   myprofile = false;
   user: User;
   friendStatus = "Add Friend";
+  adminSwitch = true;
   
   constructor(private route: ActivatedRoute,private sessionSt:SessionStorageService,private profile:ProfileService,private notifications:NotificationsService) { }
 
   ngOnInit() {
     var email = this.route.snapshot.paramMap.get('email');
+    if(email === 'admin')
+    {
+      this.adminSwitch=true;
+      return;
+    }
     if(email === 'me' || email === this.sessionSt.retrieve('email')){
       this.myprofile = true;
       this.profile.getUser(this.sessionSt.retrieve('email')).subscribe(

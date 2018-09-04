@@ -3,6 +3,54 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <body>
 
+    
+    <div *ngIf="adminSwitch; then adminprofile; else userprofile"></div>
+    
+    <ng-template #adminprofile>
+        <div class = "navbar">
+          <ul>
+            <li><a href="admin">Users Page</a></li>
+          </ul>
+        </div>
+        <div class="profile-card">
+            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+            <div class="container">
+              <h4>
+                <b>{{user.firstname}} {{user.lastname}}</b>
+                <div *ngIf="myprofile; then editProfile; else addFriend;"></div>
+              </h4> 
+              
+              <p><i class="material-icons">email</i> {{user.email}}</p> 
+              <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="container">
+              <h1>
+                <b>Work Experience</b>
+              </h1> 
+              <p>work experience text...</p> 
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="container">
+              <h1>
+                <b>Education</b>
+              </h1> 
+              <p>education text...</p> 
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="container">
+              <h1>
+                <b>Skills</b>
+              </h1> 
+              <p>skills text...</p> 
+            </div>
+        </div>
+    </ng-template>
+    
+    <ng-template #userprofile>
     <div class = "navbar">
       <ul>
         <li><a href="home">Home</a></li>
@@ -103,7 +151,7 @@
         </div>
         </form>
         </ng-template>
-    
+    </ng-template>
     
     
     
