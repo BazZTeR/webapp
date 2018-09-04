@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   myprofile = false;
   user: User;
   friendStatus = "Add Friend";
-  adminSwitch = true;
+  adminSwitch = false;
   
   constructor(private route: ActivatedRoute,private sessionSt:SessionStorageService,private profile:ProfileService,private notifications:NotificationsService) { }
 
