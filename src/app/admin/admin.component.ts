@@ -22,6 +22,8 @@ export class AdminComponent implements OnInit {
       (users: any[]) => {
         console.log(users);
         for(var i in users){
+          if(users[i].firstname=="admin")
+            continue;
           console.log(i);
           console.log(users[i]);
           console.log(users[i].firstname+ " " +users[i].lastname);
@@ -39,6 +41,8 @@ export class AdminComponent implements OnInit {
       (users: any[]) => {
         console.log(users);
         for(var i in users){
+          if(users[i].firstname=="admin")
+            continue;
           console.log(i);
           console.log(users[i]);
           console.log(users[i].firstname+ " " +users[i].lastname);
