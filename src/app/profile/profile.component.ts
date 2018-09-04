@@ -24,8 +24,14 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     var email = this.route.snapshot.paramMap.get('email');
-    if(email === 'admin')
+    if(this.sessionSt.retrieve('email') === 'admin')
     {
+      this.profile.getUser(email).subscribe(
+        (user:User)=>{
+          console.log(user);
+          this.user = user;
+        }
+      );
       this.adminSwitch=true;
       return;
     }
