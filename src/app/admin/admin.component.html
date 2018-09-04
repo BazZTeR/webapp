@@ -8,7 +8,9 @@
 
     <div class = "navbar">
       <ul>
-          <li><a href="home">Download XML</a></li>
+        <li>
+          <button ng-click="myFunc()" class = "ng">Download XML</button>
+        </li>
         <li>
           <div class="search-container">
               <form (ngSubmit)="onSubmit()" #f="ngForm">

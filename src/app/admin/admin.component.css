@@ -17,7 +17,23 @@
     float: left;
 }
 
+.navbar li .ng {
+    float: left;
+    padding: 14px 16px;
+    color: white;
+    margin-top: 0px;
+    margin-right: 0px;
+    font-size: 17px;
+    background-color: rgb(48, 48, 48);
+    border: none;
+    cursor: pointer;
+}
+
 .navbar li a:hover:not(.active) {
+    background-color: rgb(58, 58, 58);
+}
+
+.navbar li .ng:hover:not(.active) {
     background-color: rgb(58, 58, 58);
 }
 
