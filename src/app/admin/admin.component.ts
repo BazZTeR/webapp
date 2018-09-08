@@ -99,7 +99,8 @@ export class AdminComponent implements OnInit {
 
   Download()
   {
-    this.admin.getCV().subscribe(
+    console.log("HELLO");
+    this.admin.getXML().subscribe(
       (users: any[]) => {
         console.log(users);
         for(var i in users){
