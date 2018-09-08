@@ -99,8 +99,8 @@ export class AdminComponent implements OnInit {
 
   Download()
   {
-    console.log("HELLO");
-    this.admin.getXML().subscribe(
+    console.log(this.myGroup.get('myCategory').value[3]);
+    this.admin.getXML(this.myGroup.get('myCategory').value).subscribe(
       (users: any[]) => {
         console.log(users);
         for(var i in users){
