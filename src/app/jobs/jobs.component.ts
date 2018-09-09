@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class JobsComponent implements OnInit {
 
   constructor() { }
-
+  displaySwitch=true;
   ngOnInit() {
+
   }
 
 }

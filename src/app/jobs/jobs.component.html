@@ -15,17 +15,24 @@
         <li><a routerLink="/settings">Settings</a></li>
       </ul>
     </div>
-    <div class="flex-container">
-      <div class="profile-card" *ngFor="let user of users">
-        <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
-        <div>
-          <h4>
-            <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
-          </h4> 
-          <p><i class="material-icons">email</i> {{user.email}}</p> 
-          <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+    <div *ngIf="displaySwitch; then jobs; else post_job"></div>
+    <ng-template #jobs>
+      <button (click)="displaySwitch=false">Users Page</button>
+      <div class="flex-container">
+        <div class="profile-card" *ngFor="let user of users">
+          <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+          <div>
+            <h4>
+              <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
+            </h4> 
+            <p><i class="material-icons">email</i> {{user.email}}</p> 
+            <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+          </div>
         </div>
       </div>
-    </div>
-    </body>
-  </html>
+    </ng-template>
+    <ng-template #post_job>
+      <p>hello</p>
+    </ng-template>
+  </body>
+</html>
