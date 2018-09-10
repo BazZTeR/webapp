@@ -17,16 +17,16 @@
     </div>
     <div *ngIf="displaySwitch; then jobs; else post_job"></div>
     <ng-template #jobs>
-      <button (click)="displaySwitch=false">Users Page</button>
+      <button (click)="displaySwitch=false">Post a job</button>
       <div class="flex-container">
-        <div class="profile-card" *ngFor="let user of users">
+        <div class="profile-card" *ngFor="let job of jobs">
           <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
           <div>
             <h4>
-              <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
-            </h4> 
-            <p><i class="material-icons">email</i> {{user.email}}</p> 
-            <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+              <b><a href="profile/{{creator.email}}">{{job.creator.firstname}} {{job.creator.lastname}}</a></b>
+            </h4>  
+            <p>Skills needed: {{job.skills}}</p>
+            <p>Description: {{job.text}}</p>
           </div>
         </div>
       </div>
