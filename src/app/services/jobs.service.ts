@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Job } from '../entities/job';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobsService {
   
-  displaySwitch = true;
-  jobs : Job[]=[];
-  constructor() { }
+  constructor(private http:HttpClient,private sessionSt:SessionStorageService) { }
 }

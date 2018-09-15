@@ -15,12 +15,11 @@
         <li><a routerLink="/settings">Settings</a></li>
       </ul>
     </div>
-    <div *ngIf="displaySwitch; then jobs; else post_job"></div>
-    <ng-template #jobs>
+    <div *ngIf="displaySwitch; then findjob; else post_job"></div>
+    <ng-template #findjob>
       <button (click)="displaySwitch=false">Post a job</button>
       <div class="flex-container">
         <div class="profile-card" *ngFor="let job of jobs">
-          <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
           <div>
             <h4>
               <b><a href="profile/{{creator.email}}">{{job.creator.firstname}} {{job.creator.lastname}}</a></b>
@@ -32,7 +31,33 @@
       </div>
     </ng-template>
     <ng-template #post_job>
-      <p>hello</p>
+      <form (ngSubmit)="postjob()" #f="ngForm">
+        <div class="big-card">
+          <div class="container">
+            <h1>
+              <b>Job Name</b>
+            </h1> 
+            <input type="text" placeholder="Job Name..." ngModel name=jobname>
+          </div>
+        </div>
+        <div class="big-card">
+          <div class="container">
+            <h1>
+              <b>Description</b>
+            </h1> 
+            <input type="text" placeholder="Description..." ngModel name=description>
+          </div>
+        </div>
+        <div class="big-card">
+          <div class="container">
+            <h1>
+              <b>Skills</b>
+            </h1> 
+            <input type="text" placeholder="Skills separetated by comma..." ngModel name=skills>
+          </div>
+        </div>
+        <button class="postjobbutton" >Post Job</button>
+      </form>
     </ng-template>
   </body>
 </html>

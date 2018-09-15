@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Job } from '../entities/job';
+import { JobsService } from '../services/jobs.service';
 
 @Component({
   selector: 'app-jobs',
@@ -6,11 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jobs.component.css']
 })
 export class JobsComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('f') jobname: NgForm;
+  
   displaySwitch=true;
+  jobs: Job[] = [];
+
+  constructor(private job:JobsService) { }
   ngOnInit() {
 
   }
 
+  postjob()
+  {
+    this.displaySwitch=true;
+  }
+  
 }
