@@ -16,12 +16,25 @@ export class JobsComponent implements OnInit {
 
   constructor(private job:JobsService) { }
   ngOnInit() {
-
+    this.job.getjobs().subscribe(
+      (jobs: any[]) => {
+        for(var i in jobs){
+          this.jobs[i] = jobs[i];
+        }
+      }
+    );
   }
 
   postjob()
   {
     this.displaySwitch=true;
+    this.job.postjob().subscribe(
+      (jobs: any[]) => {
+        for(var i in jobs){
+          this.jobs[i] = jobs[i];
+        }
+      }
+    );
   }
   
 }

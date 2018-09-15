@@ -8,4 +8,22 @@ import { SessionStorageService } from 'ngx-webstorage';
 export class JobsService {
   
   constructor(private http:HttpClient,private sessionSt:SessionStorageService) { }
+  getjobs(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      })
+    };
+    return this.http.get('http://localhost:8080/getjobs',httpOptions);
+  }
+  postjob(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      })
+    };
+    return this.http.get('http://localhost:8080/postjob',httpOptions);
+  }
 }
