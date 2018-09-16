@@ -17,11 +17,11 @@ export class JobsService {
     };
     return this.http.get('http://localhost:8080/getjobs',httpOptions);
   }
-  postjob(){
+  postjob(jobname,description,skills){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')+":"+jobname+":"+description+":"+skills),
       })
     };
     return this.http.get('http://localhost:8080/postjob',httpOptions);

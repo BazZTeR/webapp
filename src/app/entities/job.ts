@@ -4,7 +4,7 @@ export class Job {
     id : number;
     creator : User;
     applicants : User[];
-    Title: string
+    title: string
     skills : string[];
-    text : string;
+    description : string;
 }

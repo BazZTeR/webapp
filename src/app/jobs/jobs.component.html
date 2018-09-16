@@ -17,15 +17,18 @@
     </div>
     <div *ngIf="displaySwitch; then findjob; else post_job"></div>
     <ng-template #findjob>
-      <button (click)="displaySwitch=false">Post a job</button>
+      <button class="postjobbutton2" (click)="displaySwitch=false">Post a job</button>
+      <div *ngIf="displayYourJobsSwitch; then displaythem"></div>
+      <ng-template #displaythem>
+        <p>hello</p>  
+      </ng-template>
       <div class="flex-container">
         <div class="profile-card" *ngFor="let job of jobs">
           <div>
-            <h4>
-              <b><a href="profile/{{creator.email}}">{{job.creator.firstname}} {{job.creator.lastname}}</a></b>
-            </h4>  
+            <h4><p><b>{{job.title}}</b></p></h4>  
             <p>Skills needed: {{job.skills}}</p>
-            <p>Description: {{job.text}}</p>
+            <div class="scroll"><p>Description: {{job.description}}</p></div>
+              <b>Employer <a href="profile/{{job.creator.email}}">{{job.creator.firstname}} {{job.creator.lastname}}</a></b>
           </div>
         </div>
       </div>
