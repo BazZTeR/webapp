@@ -17,12 +17,13 @@ export class JobsComponent implements OnInit {
   jobs: Job[] = [];
   myjobs: Job[] = [];
   myemail: String;
+  applicationstatus: boolean[] = [];
 
   constructor(private job:JobsService,private sessionSt:SessionStorageService) { }
   ngOnInit() {
     this.myemail=this.sessionSt.retrieve('email');
     this.job.getjobs().subscribe(
-      (jobs: Job[]) => {
+      (jobs: any[]) => {
         for(var i in jobs){
           if(jobs[i].creator.email == this.myemail)
           {
@@ -31,6 +32,15 @@ export class JobsComponent implements OnInit {
             continue;
           }
           this.jobs.push(jobs[i]);
+          for(var j in jobs[i].applicant)
+          {
+            if(jobs[i].applicant[j].email==this.myemail)
+            {
+              this.applicationstatus.push(true);
+              continue;
+            }
+          }
+          this.applicationstatus.push(false);
         }
       }
     );
@@ -38,7 +48,6 @@ export class JobsComponent implements OnInit {
 
   postjob()
   {
-    console.log(this.jobname.value.jobname);
     if(!this.jobname.value.jobname || !this.jobname.value.description || !this.jobname.value.skills)
     {
       window.alert("Please dont leave empty fields");
@@ -50,6 +59,16 @@ export class JobsComponent implements OnInit {
         for(var i in jobs){
           this.jobs[i] = jobs[i];
         }
+      }
+    );
+  }
+  applicatejob(i)
+  {
+    this.applicationstatus[i]=true;
+    this.job.applicatejob(this.jobs[i].id).subscribe(
+      (status: boolean) => {
+        if(status==false)
+          console.log("error")
       }
     );
   }

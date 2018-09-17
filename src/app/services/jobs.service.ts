@@ -26,4 +26,13 @@ export class JobsService {
     };
     return this.http.get('http://localhost:8080/postjob',httpOptions);
   }
+  applicatejob(jobid){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')+":"+jobid),
+      })
+    };
+    return this.http.get<boolean>('http://localhost:8080/applicatejob',httpOptions);
+  }
 }

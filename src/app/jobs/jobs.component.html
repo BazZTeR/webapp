@@ -20,16 +20,35 @@
       <button class="postjobbutton2" (click)="displaySwitch=false">Post a job</button>
       <div *ngIf="displayYourJobsSwitch; then displaythem"></div>
       <ng-template #displaythem>
-        <p>hello</p>  
+          <h2>Your Jobs</h2>
+          <div class="flex-container-scroll">
+              <div class="profile-card" *ngFor="let job of myjobs">
+                <div>
+                  <h4><p><b>{{job.title}}</b></p></h4>  
+                  <p>Skills needed: {{job.skills}}</p>
+                  <div class="scroll"><p>Description: {{job.description}}</p></div>
+                  <div class="scroll"><p>Applicants:</p></div>
+                </div>
+              </div>
+            </div>  
       </ng-template>
+      <h2>Find your next job</h2>
       <div class="flex-container">
-        <div class="profile-card" *ngFor="let job of jobs">
+        <div class="profile-card" *ngFor="let job of jobs; index as i">
           <div>
             <h4><p><b>{{job.title}}</b></p></h4>  
             <p>Skills needed: {{job.skills}}</p>
             <div class="scroll"><p>Description: {{job.description}}</p></div>
               <b>Employer <a href="profile/{{job.creator.email}}">{{job.creator.firstname}} {{job.creator.lastname}}</a></b>
-          </div>
+            </div>
+            <div *ngIf="applicationstatus[i]; then notdisplaybutton;else displaybutton"></div>
+            <ng-template #displaybutton>
+              <button class="applicationbutton" (click)="applicatejob(i)">Applicate</button>
+            </ng-template>
+            <ng-template #notdisplaybutton>
+              <button class="applicationbutton" >Applicated!</button>
+            </ng-template>
+            
         </div>
       </div>
     </ng-template>
