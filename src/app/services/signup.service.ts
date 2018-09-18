@@ -15,6 +15,6 @@ export class SignupService {
         'Authorization': 'Basic ' + btoa(email+':'+password+':'+name+':'+surname+':'+phone)
       }),
     };
-    return this.http.get<boolean>('http://localhost:8080/signup',httpOptions);
+    return this.http.post<boolean>('http://localhost:8080/signup',null,httpOptions);
   }
 }

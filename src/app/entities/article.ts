@@ -8,4 +8,5 @@ export class Article {
   comments: Comment[];
   user: User;
   like: MyLike;
+  file: string;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SessionStorageService } from 'ngx-webstorage';
 import { ProfileService } from '../services/profile.service';
@@ -17,13 +17,17 @@ export class ProfileComponent implements OnInit {
   displaySwitch = true;
   myprofile = false;
   user: User;
+  fullname: string;
   friendStatus = "Add Friend";
   adminSwitch = false;
-  
-  constructor(private route: ActivatedRoute,private sessionSt:SessionStorageService,private profile:ProfileService,private notifications:NotificationsService) { }
+  file = null;
+  email: string;
+
+  constructor(private router:Router,private route: ActivatedRoute,private sessionSt:SessionStorageService,private profile:ProfileService,private notifications:NotificationsService) { }
 
   ngOnInit() {
     var email = this.route.snapshot.paramMap.get('email');
+    this.email = email;
     if(this.sessionSt.retrieve('email') === 'admin')
     {
       this.profile.getUser(email).subscribe(
@@ -41,6 +45,7 @@ export class ProfileComponent implements OnInit {
         (user:User)=>{
           console.log(user);
           this.user = user;
+          this.fullname = user.firstname + " " + user.lastname;
         }
       )
     }
@@ -85,7 +90,55 @@ export class ProfileComponent implements OnInit {
   }
 
   saveChanges(){
-    this.profile.editProfile(this.form.value.name,this.form.value.phone,this.form.value.workExp,this.form.value.eduExp,this.form.value.skillsExp).subscribe();
+    var count = 0;
+    for(var i in this.form.value.name){
+      if(this.form.value.name[i] === " "){
+        count++;
+      }
+    }
+    if(count != 1){
+      window.alert("Invalid name!!!");
+      console.log("count = " + count);
+    }
+    else{
+      const fd = new FormData();
+      if(this.file != null){
+        fd.append('file',this.file,this.file.name);
+        console.log("filename: "+this.file.name);
+      }
+      this.profile.editProfile(this.form.value.name,this.form.value.phone,this.form.value.workExp,this.form.value.eduExp,this.form.value.skillsExp,this.user,fd).subscribe(
+        (res)=>{
+          this.profile.getUser(this.user.email).subscribe(
+            (user:User)=>{
+              console.log(user);
+              this.user = user;
+              this.fullname = user.firstname + " " + user.lastname;
+            }
+          );
+        }
+      );
+      this.displaySwitch = true;
+    }
+    
+  }
+
+  onFileSelected(event){
+    console.log(event);
+    this.file = event.target.files[0];
+  }
+
+  onPrivacyChange(event){
+    console.log(event);
+    if(event.target.name === "workPrivacy"){
+      this.user.workPrivacy = event.target.value;
+      console.log("workPrivacy = "+this.user.workPrivacy);
+    }
+    else if(event.target.name === "eduPrivacy"){
+      this.user.eduPrivacy = event.target.value;
+    }
+    else if(event.target.name === "skillsPrivacy"){
+      this.user.skillsPrivacy = event.target.value;
+    }
   }
 
 }

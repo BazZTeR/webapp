@@ -18,7 +18,7 @@
     </div>
 
     <div class="profile-card">
-      <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+      <img class="profileImg" src="http://localhost:8080/getFile/{{user.profileImage}}" alt="Avatar" style="width:100%">
       <h4>
         <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>
       </h4> 
@@ -29,9 +29,8 @@
     <div class="posts">
         <form (ngSubmit)="onSubmit()" #f="ngForm">
           <div class="post">
-            <textarea  placeholder="some text..." ngModel name="postText"></textarea>
-            <input class="photo" type="file" id="photo">
-            <input class="video" type="file" id="video">
+            <textarea  placeholder="Share an article, photo, video or idea" ngModel name="postText"></textarea>
+            <input type="file" id="file" (change)="onFileSelected($event)">
             <input type="submit" value="Submit">
           </div>
         </form>
@@ -39,6 +38,16 @@
           <ul>
             <li *ngFor="let article of articles;let i = index;" class="article-container">
               {{article.user.firstname}} {{article.user.lastname}} posted: <br> {{article.text}} 
+              <br>
+              <div *ngIf="article.file.indexOf('image')>-1">
+                <img src="http://localhost:8080/getFile/{{article.file}}">
+              </div>
+              <div *ngIf="article.file.indexOf('video')>-1">
+                <video src="http://localhost:8080/getFile/{{article.file}}" controls></video>
+              </div>
+              <div *ngIf="article.file.indexOf('audio')>-1">
+                <audio src="http://localhost:8080/getFile/{{article.file}}" controls></audio>
+              </div>
               <br>
               <button class="button" (click)="onLike(article.id,article.like.status)">{{article.like.status}}</button>
               <input type="text" placeholder="Post a comment..." [(ngModel)]="commentForPost[i]">

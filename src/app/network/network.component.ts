@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NetworkService } from '../services/network.service';
 import { User } from '../entities/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-network',
@@ -14,10 +15,11 @@ export class NetworkComponent implements OnInit {
   displaySwitch = true;
   users: User[] = [];
 
-  constructor(private network:NetworkService) { }
+  constructor(private route: ActivatedRoute,private network:NetworkService) { }
 
   ngOnInit() {
-    this.network.getNetworkUsers().subscribe(
+    var email = this.route.snapshot.paramMap.get('email');
+    this.network.getNetworkUsers(email).subscribe(
       (users: any[]) => {
         console.log(users);
         for(var i in users){

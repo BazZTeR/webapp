@@ -20,6 +20,8 @@ import 'rxjs/add/observable/forkJoin';
 export class HomeComponent implements OnInit {
   @ViewChild('f') post: NgForm;
 
+  file = null;
+
   commentForPost: string[] = [];
 
   user: User;
@@ -85,10 +87,14 @@ export class HomeComponent implements OnInit {
   onSubmit(){
     console.log(this.post);
     console.log(this.post.value.postText);
-    this.home.post(this.post.value.postText).subscribe();
+    const fd = new FormData();
+    if(this.file != null){
+      fd.append('file',this.file,this.file.name);
+    }
+    this.home.post(this.post.value.postText,fd).subscribe();
   }
 
-  onPost(articleId,commentText){
+  onPost(articleId,commentText){//Post a Comment
     console.log("articleId: "+articleId+" text: "+commentText);
     this.home.comment(articleId,commentText).subscribe();
   }
@@ -106,6 +112,11 @@ export class HomeComponent implements OnInit {
         } 
       }
     }
+  }
+
+  onFileSelected(event){
+    console.log(event);
+    this.file = event.target.files[0];
   }
 
 }

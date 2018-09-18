@@ -39,4 +39,23 @@ export class NotificationsService {
     return this.http.post('http://localhost:8080/decline',email,httpOptions);
   }
 
+  getAllComments(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      })
+    };
+    return this.http.get('http://localhost:8080/getAllComments',httpOptions);
+  }
+
+  getAllLikes(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      })
+    };
+    return this.http.get('http://localhost:8080/getAllLikes',httpOptions);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationsService } from '../services/notifications.service';
 import { User } from '../entities/user';
+import { MyLike } from '../entities/mylike';
 
 @Component({
   selector: 'app-notifications',
@@ -10,6 +11,8 @@ import { User } from '../entities/user';
 export class NotificationsComponent implements OnInit {
 
   users: User[] = [];
+  comments: Comment[] = [];
+  likes: MyLike[] = [];
 
   constructor(private notifications:NotificationsService) { }
 
@@ -22,6 +25,24 @@ export class NotificationsComponent implements OnInit {
         }
       }
     );
+
+    this.notifications.getAllComments().subscribe(
+      (comments: any[]) => {
+        console.log(comments);
+        for(var i in comments){
+          this.comments[i] = comments[i];
+        }
+      }
+    )
+
+    this.notifications.getAllLikes().subscribe(
+      (likes: any[]) => {
+        console.log(likes);
+        for(var i in likes){
+          this.likes[i] = likes[i];
+        }
+      }
+    )
   }
 
   Accept(email){

@@ -30,7 +30,7 @@
     <ng-template #network>
       <div class="flex-container">
           <div class="profile-card" *ngFor="let user of users">
-            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+              <img class="profileImg" src="http://localhost:8080/getFile/{{user.profileImage}}" alt="Avatar" style="width:100%">
             <div>
               <h4>
                 <b><a href="profile/{{user.email}}">{{user.firstname}} {{user.lastname}}</a></b>

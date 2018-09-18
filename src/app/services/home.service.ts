@@ -9,14 +9,15 @@ export class HomeService {
 
   constructor(private http:HttpClient,private sessionSt:SessionStorageService) { }
 
-  post(postText){
+  post(postText,fd){
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        // 'Content-Type':  'application/json',
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       }),
+      params: new HttpParams().set('postText',postText),
     };
-    return this.http.post<boolean>('http://localhost:8080/post',postText,httpOptions);
+    return this.http.post<boolean>('http://localhost:8080/post',fd,httpOptions);
   }
 
   getArticles(){
@@ -77,5 +78,4 @@ export class HomeService {
     };
     return this.http.get('http://localhost:8080/getLike',httpOptions);
   }
-
 }

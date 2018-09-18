@@ -26,14 +26,11 @@
     </div>
     <div class="container">
       <table>
-        <tr>
-          <th>lul1</th>
+        <tr *ngFor="let comment of comments">
+          <th><a href="profile/{{comment.user.email}}">{{comment.user.firstname}} {{comment.user.lastname}}</a> commented on your article: <i>{{comment.text}}</i></th>
         </tr>
-        <tr>
-          <th>lul2</th>
-        </tr>
-        <tr>
-          <th>lul3</th>
+        <tr *ngFor="let like of likes">
+          <th><a href="profile/{{like.user.email}}">{{like.user.firstname}} {{like.user.lastname}}</a> liked your article</th>
         </tr>
       </table>
     </div>

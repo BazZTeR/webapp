@@ -32,7 +32,7 @@ body{
 .profile-card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 35%;
+    width: 400px;
     border-radius: 5px;
     float: left;
 }
@@ -42,7 +42,10 @@ body{
 }
 
 img {
-    border-radius: 5px 5px 0 0;
+    max-height: 100px;
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 10px 10px;
 }
 
 .container {
@@ -58,11 +61,11 @@ input [type="submit"]{
 }
 
 .big-card {
+    margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 60%;
+    width: 800px;
     border-radius: 5px;
-    float: right;
 }
 
 .big-card:hover {
@@ -74,13 +77,13 @@ input [type="submit"]{
 }
 
 .friendbutton {
+    float: right;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
@@ -93,11 +96,11 @@ input [type="submit"]{
 
 textarea{
     display: block;
-    width: 90%;
+    width: 80%;
     height: 70%;
     border: 0px solid #ccc;
     border-radius: 4px;
     background-color: #f8f8f8;
-    margin: auto;
+    margin: 10px;
     resize: none;
 }

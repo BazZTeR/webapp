@@ -11,6 +11,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { AdminComponent } from './admin/admin.component';
 
 import { AuthGuard } from './auth.guard';
+import { MessagesComponent } from './messages/messages.component';
  
 const routes: Routes = [
   // { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,9 +20,12 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, /*canActivate: [AuthGuard]*/ },
   { path: 'settings', component: SettingsComponent },
   { path: 'network', component: NetworkComponent },
+  { path: 'network/:email', component: NetworkComponent },
   { path: 'profile/:email', component: ProfileComponent},
   { path: 'notifications', component: NotificationsComponent},
   { path: 'admin', component: AdminComponent },
+  { path: 'messages/:email', component: MessagesComponent },
+  { path: 'messages', component: MessagesComponent },
 ];
  
 @NgModule({

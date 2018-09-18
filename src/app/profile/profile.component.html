@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <body>
 
     
@@ -13,7 +15,7 @@
           </ul>
         </div>
         <div class="profile-card">
-            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+            <img src="https://ih1.redbubble.net/image.494693388.6395/pp,550x550.u1.jpg" alt="Avatar" style="width:100%">
             <div class="container">
               <h4>
                 <b>{{user.firstname}} {{user.lastname}}</b>
@@ -29,7 +31,7 @@
               <h1>
                 <b>Work Experience</b>
               </h1> 
-              <p>work experience text...</p> 
+              <p>{{user.workExp}}</p> 
             </div>
         </div>
         <div class="big-card">
@@ -37,7 +39,7 @@
               <h1>
                 <b>Education</b>
               </h1> 
-              <p>education text...</p> 
+              <p>{{user.eduExp}}</p> 
             </div>
         </div>
         <div class="big-card">
@@ -45,7 +47,7 @@
               <h1>
                 <b>Skills</b>
               </h1> 
-              <p>skills text...</p> 
+              <p>{{user.skillsExp}}</p> 
             </div>
         </div>
     </ng-template>
@@ -67,7 +69,7 @@
     <!-- profile template -->
     <ng-template #profile>
       <div class="profile-card">
-          <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+          <img src="http://localhost:8080/getFile/{{user.profileImage}}" alt="Avatar" style="width:100%">
           <div class="container">
             <h4>
               <b>{{user.firstname}} {{user.lastname}}</b>
@@ -79,76 +81,95 @@
                 <button class="friendbutton" (click)="editProf()">Edit Profile</button>
               </ng-template>
             </h4> 
-            
+            <!-- if user is a friend diplay chat and network buttons -->
+            <div *ngIf="friendStatus == 'Remove Friend'">
+                <p><i class="fas fa-users"></i> <a href="network/{{email}}">Network</a> </p> 
+                <p><i class="material-icons">chat</i><a href="messages/{{email}}">Chat</a></p>
+            </div>
             <p><i class="material-icons">email</i> {{user.email}}</p> 
             <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
           </div>
       </div>
-      <div class="big-card">
+      
+      <div *ngIf="myprofile || user.workPrivacy === 'public'" class="big-card">
           <div class="container">
             <h1>
               <b>Work Experience</b>
             </h1> 
-            <p>work experience text...</p> 
+            <p>{{user.workExp}}</p> 
           </div>
       </div>
-      <div class="big-card">
+      <div *ngIf="myprofile || user.eduPrivacy === 'public'" class="big-card">
           <div class="container">
             <h1>
               <b>Education</b>
             </h1> 
-            <p>education text...</p> 
+            <p>{{user.eduExp}}</p> 
           </div>
       </div>
-      <div class="big-card">
+      <div *ngIf="myprofile || user.skillsPrivacy === 'public'" class="big-card">
           <div class="container">
             <h1>
               <b>Skills</b>
             </h1> 
-            <p>skills text...</p> 
+            <p>{{user.skillsExp}}</p> 
           </div>
       </div>
     </ng-template>
       <!-- edit profile template -->
         <ng-template #edit>
-            <form (ngSubmit)="saveChanges()" #f="ngForm">
-          <div class="profile-card">
-            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
-            <div class="container">
-              <h4>
-                  <input type="text" placeholder="Change Name" ngModel name="name">
+          <form (ngSubmit)="saveChanges()" #f="ngForm">
+            <div class="profile-card">
+              <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+              <div class="container">
+                <p>
+                  Change Name <br>
+                  <input type="text" placeholder="Firstname Lastname" ngModel name="name" [(ngModel)]="fullname">
 
-                <input class="friendbutton" type="submit" value="Save Changes">
-              </h4> 
-              
-              <p><i class="material-icons">email</i> {{user.email}}</p> 
-              <p><i class="material-icons">contact_phone</i> <input type="text" placeholder="Change Phone" ngModel name="phone"></p> 
-            </div>
-        </div>
-        <div class="big-card">
-            <div class="container">
-              <h1>
-                <b>Work Experience</b>
-              </h1> 
-              <textarea placeholder="some text..." ngModel name="workExp"></textarea>
-            </div>
-        </div>
-        <div class="big-card">
-            <div class="container">
-              <h1>
-                <b>Education</b>
-              </h1> 
-              <textarea placeholder="some text..." ngModel name="eduExp"></textarea>
-            </div>
-        </div>
-        <div class="big-card">
-            <div class="container">
-              <h1>
-                <b>Skills</b>
-              </h1> 
-              <textarea placeholder="some text..." ngModel name="skillsExp"></textarea>
-            </div>
-        </div>
+                  <input class="friendbutton" type="submit" value="Save Changes">
+                </p> 
+                Upload Profile Image <br>
+                <input type="file" id="file" (change)="onFileSelected($event)">
+                <p><i class="material-icons">email</i> {{user.email}}</p> 
+                <p><i class="material-icons">contact_phone</i> <input type="text" placeholder="Change Phone" ngModel name="phone" [(ngModel)]="user.phone"></p> 
+              </div>
+          </div>
+          <div class="big-card">
+              <div class="container">
+                <h1>
+                  <b>Work Experience</b>
+                </h1> 
+                <textarea placeholder="some text..." ngModel name="workExp" [(ngModel)]="user.workExp"></textarea>
+              </div>
+              <select name="workPrivacy" (change)="onPrivacyChange($event)">
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+              </select>
+          </div>
+          <div class="big-card">
+              <div class="container">
+                <h1>
+                  <b>Education</b>
+                </h1> 
+                <textarea placeholder="some text..." ngModel name="eduExp" [(ngModel)]="user.eduExp"></textarea>
+              </div>
+              <select name="eduPrivacy" (change)="onPrivacyChange($event)">
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+              </select>
+          </div>
+          <div class="big-card">
+              <div class="container">
+                <h1>
+                  <b>Skills</b>
+                </h1> 
+                <textarea placeholder="some text..." ngModel name="skillsExp" [(ngModel)]="user.skillsExp"></textarea>
+              </div>
+              <select name="skillsPrivacy" (change)="onPrivacyChange($event)">
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+              </select>
+          </div>
         </form>
         </ng-template>
     </ng-template>
