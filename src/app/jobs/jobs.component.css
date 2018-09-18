@@ -131,6 +131,8 @@ h2{
 
 .scroll{
     overflow-y: scroll;
+    flex-wrap: wrap;
+    height: 100px;
 }
 
 .flex-container {

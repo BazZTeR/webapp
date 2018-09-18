@@ -15,7 +15,7 @@ export class JobsComponent implements OnInit {
   displaySwitch=true;
   displayYourJobsSwitch=false;
   jobs: Job[] = [];
-  myjobs: Job[] = [];
+  myjobs: any[] = [];
   myemail: String;
   applicationstatus: boolean[] = [];
 
@@ -32,15 +32,15 @@ export class JobsComponent implements OnInit {
             continue;
           }
           this.jobs.push(jobs[i]);
+          this.applicationstatus.push(false);
           for(var j in jobs[i].applicant)
           {
             if(jobs[i].applicant[j].email==this.myemail)
             {
-              this.applicationstatus.push(true);
-              continue;
+              this.applicationstatus[this.applicationstatus.length-1]=true;
+              continue; 
             }
           }
-          this.applicationstatus.push(false);
         }
       }
     );
