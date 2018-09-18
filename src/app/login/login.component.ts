@@ -14,7 +14,6 @@ export class LoginComponent{
   constructor(private login: LoginService, private router:Router){}
 
   onSubmit(){
-    console.log(this.loginform);
     this.login.login(this.loginform.value.email,this.loginform.value.password).subscribe(
       res=>{
         console.log('res',res);
@@ -37,5 +36,4 @@ export class LoginComponent{
   		}
     );
   }
-
 }

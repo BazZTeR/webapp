@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AdminComponent } from './admin/admin.component';
 import { MessagesComponent } from './messages/messages.component';
+import { JobsComponent } from './jobs/jobs.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MessagesComponent } from './messages/messages.component';
     NotificationsComponent,
     AdminComponent,
     MessagesComponent,
+    JobsComponent,
   ],
   imports: [
     BrowserModule,

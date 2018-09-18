@@ -9,6 +9,7 @@ import { NetworkComponent } from './network/network.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { AdminComponent } from './admin/admin.component';
+import { JobsComponent } from './jobs/jobs.component';
 
 import { AuthGuard } from './auth.guard';
 import { MessagesComponent } from './messages/messages.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'messages/:email', component: MessagesComponent },
   { path: 'messages', component: MessagesComponent },
+  { path: 'jobs', component: JobsComponent },
 ];
  
 @NgModule({
