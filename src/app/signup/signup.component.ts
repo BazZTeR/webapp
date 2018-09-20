@@ -20,7 +20,7 @@ export class SignupComponent{
     {
       window.alert("Cannot enter that username");
       return;
-    }
+    } 
     if(this.signupForm.value.password != this.signupForm.value.confirm_password){
       window.alert("Password doesnt match with Confirm password");
     }

@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
     },
     {
       id: 3,
-      name: 'Announcements'
+      name: 'Jobs'
     },
     {
       id: 4,
@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
     },
     {
       id: 5,
-      name: 'Interests'
+      name: 'Likes'
     },
     {
       id: 6,
