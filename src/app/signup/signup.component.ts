@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class SignupComponent{
   @ViewChild('f') signupForm: NgForm;
 
+  file = null;
+
   constructor(private signup:SignupService,private router:Router){}
 
   onSubmit(){
@@ -25,7 +27,12 @@ export class SignupComponent{
       window.alert("Password doesnt match with Confirm password");
     }
     else{
-      this.signup.signup(this.signupForm.value.email,this.signupForm.value.password,this.signupForm.value.name,this.signupForm.value.surname,this.signupForm.value.phone).subscribe(
+      const fd = new FormData();
+      if(this.file != null){
+        fd.append('file',this.file,this.file.name);
+        console.log("filename: "+this.file.name);
+      }
+      this.signup.signup(this.signupForm.value.email,this.signupForm.value.password,this.signupForm.value.name,this.signupForm.value.surname,this.signupForm.value.phone,fd).subscribe(
         res=>{
           console.log('res',res);
           if(res){
@@ -41,5 +48,10 @@ export class SignupComponent{
         }
       );
     }
+  }
+
+  onFileSelected(event){
+    console.log(event);
+    this.file = event.target.files[0];
   }
 }

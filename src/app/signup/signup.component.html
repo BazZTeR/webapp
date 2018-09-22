@@ -18,6 +18,8 @@
         <input type="text" placeholder="name" ngModel name=name/>
         <input type="text" placeholder="surname" ngModel name=surname/>
         <input type="tel" placeholder="telephone number" ngModel name=phone/>
+        Upload Profile Image <br>
+        <input type="file" id="file" ngModel name=file (change)="onFileSelected($event)" accept="image/*">
         
         <button type="submit" >Sign Up</button>
         <p class="message">Already registered? <a routerLink="/login">Sign In</a>
