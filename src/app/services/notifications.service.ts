@@ -58,4 +58,16 @@ export class NotificationsService {
     };
     return this.http.get('http://localhost:8080/getAllLikes',httpOptions);
   }
+
+  getArticle(articleId){
+    console.log("getting articles...");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+      }),
+      params: new HttpParams().set('articleId',articleId)
+    };
+    return this.http.get('http://localhost:8080/getArticle',httpOptions);
+  }
 }

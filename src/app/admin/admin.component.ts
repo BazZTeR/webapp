@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AdminService } from '../services/admin.service';
 import { User } from '../entities/user';
 import { FormControl, FormBuilder } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-network',
@@ -54,7 +55,7 @@ export class AdminComponent implements OnInit {
 
   myGroup;  
   
-  constructor(private formBuilder: FormBuilder, private admin:AdminService) {
+  constructor(private formBuilder: FormBuilder, private admin:AdminService, private sanitizer: DomSanitizer) {
     this.myGroup = this.formBuilder.group({
       myCategory: this.formBuilder.array(this.categoriesSelected)
     });
@@ -101,16 +102,17 @@ export class AdminComponent implements OnInit {
   {
     console.log(this.myGroup.get('myCategory').value[3]);
     this.admin.getXML(this.myGroup.get('myCategory').value).subscribe(
-      (users: any[]) => {
-        console.log(users);
-        for(var i in users){
-          if(users[i].firstname=="admin")
-            continue;
-          console.log(i);
-          console.log(users[i]);
-          console.log(users[i].firstname+ " " +users[i].lastname);
-          this.users[i] = users[i];
-        }
+      (res) => {
+        console.log('start download:',res);
+        var url = window.URL.createObjectURL(res);
+        var a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = url;
+        a.download = "myxml.xml";
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove(); // remove the element
       }
     );
   }

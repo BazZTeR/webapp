@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'network/:email', component: NetworkComponent },
   { path: 'profile/:email', component: ProfileComponent},
   { path: 'notifications', component: NotificationsComponent},
+  { path: 'notifications/:articleId', component: NotificationsComponent},
   { path: 'admin', component: AdminComponent },
   { path: 'messages/:email', component: MessagesComponent },
   { path: 'messages', component: MessagesComponent },

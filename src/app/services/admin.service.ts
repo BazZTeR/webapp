@@ -32,10 +32,11 @@ export class AdminService {
   getXML(values){
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type':  'application/xml',
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       }),
-      params: new HttpParams().set('values',values)
+      params: new HttpParams().set('values',values),
+      responseType: 'blob' as 'blob',
     };
     return this.http.get('http://localhost:8080/getXML',httpOptions);
   } 
