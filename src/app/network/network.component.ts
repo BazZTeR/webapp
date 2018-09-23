@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { NetworkService } from '../services/network.service';
 import { User } from '../entities/user';
 import { ActivatedRoute } from '@angular/router';
+import * as h from '../host';
 
 @Component({
   selector: 'app-network',
@@ -14,6 +15,7 @@ export class NetworkComponent implements OnInit {
 
   displaySwitch = true;
   users: User[] = [];
+  host = h.host;
 
   constructor(private route: ActivatedRoute,private network:NetworkService) { }
 

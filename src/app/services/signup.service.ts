@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,6 @@ export class SignupService {
         'Authorization': 'Basic ' + btoa(email+':'+password+':'+name+':'+surname+':'+phone)
       }),
     };
-    return this.http.post<boolean>('http://localhost:8080/signup',fd,httpOptions);
+    return this.http.post<boolean>(h.host+'/signup',fd,httpOptions);
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class MessagesService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       }),
     };
-    return this.http.get('http://localhost:8080/getLatestChats',httpOptions);
+    return this.http.get(h.host+'/getLatestChats',httpOptions);
   }
 
   getLastChatUser(){
@@ -27,7 +28,7 @@ export class MessagesService {
         }),
         responseType: 'text' as 'text',
       };
-      return this.http.get('http://localhost:8080/getLastChat',httpOptions);
+      return this.http.get(h.host+'/getLastChat',httpOptions);
   }
 
   getChat(email){
@@ -38,7 +39,7 @@ export class MessagesService {
         }),
         params: new HttpParams().set('email',email)
       };
-      return this.http.get('http://localhost:8080/getChat',httpOptions);
+      return this.http.get(h.host+'/getChat',httpOptions);
   }
 
   sendMessage(email,message){
@@ -49,6 +50,6 @@ export class MessagesService {
       }),
       params: new HttpParams().set('email',email)
     };
-    return this.http.put('http://localhost:8080/sendMessage',message,httpOptions);
+    return this.http.put(h.host+'/sendMessage',message,httpOptions);
   }
 }

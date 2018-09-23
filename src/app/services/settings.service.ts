@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,6 @@ export class SettingsService {
     };
     this.sessionSt.store('email',email);
     this.sessionSt.store('password',password);
-    return this.http.put<boolean>('http://localhost:8080/settings',email+':'+password,httpOptions);
+    return this.http.put<boolean>(h.host+'/settings',email+':'+password,httpOptions);
   }
 }

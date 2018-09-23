@@ -31,13 +31,13 @@
         <div *ngIf="message.user.email===email; then left; else right"></div>
         <ng-template #right>
           <div class="bubble darker">
-            <img src="http://localhost:8080/getFile/{{me.profileImage}}" alt="Avatar" class="right" style="width:100%;">
+            <img src="{{host}}/getFile/{{me.profileImage}}" alt="Avatar" class="right" style="width:100%;">
             <p class="text-right">{{message.text}}</p>
           </div>
         </ng-template>
         <ng-template #left>
           <div class="bubble">
-              <img src="http://localhost:8080/getFile/{{friend.profileImage}}" alt="Avatar" style="width:100%">
+              <img src="{{host}}/getFile/{{friend.profileImage}}" alt="Avatar" style="width:100%">
             <p class="text-left">{{message.text}}</p>
           </div>
         </ng-template>

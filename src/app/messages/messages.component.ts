@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { Chat } from '../entities/chat';
 import { Message } from '../entities/message';
 import { ProfileService } from '../services/profile.service';
+import * as h from '../host'; 
 
 @Component({
   selector: 'app-messages',
@@ -22,6 +23,7 @@ export class MessagesComponent implements OnInit {
   mymessages: Message[] = [];
   me: User;
   friend: User;
+  host = h.host;
 
   constructor(private messages:MessagesService,private route: ActivatedRoute,private sessionSt:SessionStorageService,private network:NetworkService, private profile:ProfileService) { }
 

@@ -5,6 +5,7 @@ import { Article } from '../entities/article';
 import { MyLike } from '../entities/mylike';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../services/home.service';
+import * as h from '../host'; 
 
 @Component({
   selector: 'app-notifications',
@@ -20,6 +21,7 @@ export class NotificationsComponent implements OnInit {
   articleId: string;
   article: Article;
   commentForPost: string;
+  host=h.host;
 
   constructor(private notifications:NotificationsService,private route: ActivatedRoute,private home:HomeService) { }
 

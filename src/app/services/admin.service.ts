@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AdminService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       })
     };
-    return this.http.get('http://localhost:8080/getAllUsers',httpOptions);
+    return this.http.get(h.host+'/getAllUsers',httpOptions);
   }
 
   search(name){
@@ -27,7 +28,7 @@ export class AdminService {
       }),
       params: new HttpParams().set('name',name)
     };
-    return this.http.get('http://localhost:8080/search',httpOptions);
+    return this.http.get(h.host+'/search',httpOptions);
   }
   getXML(values){
     const httpOptions = {
@@ -38,6 +39,6 @@ export class AdminService {
       params: new HttpParams().set('values',values),
       responseType: 'blob' as 'blob',
     };
-    return this.http.get('http://localhost:8080/getXML',httpOptions);
+    return this.http.get(h.host+'/getXML',httpOptions);
   } 
 }

@@ -15,7 +15,7 @@
           </ul>
         </div>
         <div class="profile-card">
-            <img src="http://localhost:8080/getFile/{{user.profileImage}}" alt="Avatar" style="width:100%">
+            <img src="{{host}}/getFile/{{user.profileImage}}" alt="Avatar" style="width:100%">
             <div class="container">
               <h4>
                 <b>{{user.firstname}} {{user.lastname}}</b>
@@ -69,7 +69,7 @@
     <!-- profile template -->
     <ng-template #profile>
       <div class="profile-card">
-          <img src="http://localhost:8080/getFile/{{user.profileImage}}" alt="Avatar" style="width:100%">
+          <img src="{{host}}/getFile/{{user.profileImage}}" alt="Avatar" style="width:100%">
           <div class="container">
             <h4>
               <b>{{user.firstname}} {{user.lastname}}</b>

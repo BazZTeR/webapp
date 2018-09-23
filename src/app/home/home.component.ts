@@ -9,6 +9,7 @@ import { MyLike } from '../entities/mylike';
 import { Comment } from '../entities/comment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import * as h from '../host'; 
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ import 'rxjs/add/observable/forkJoin';
 export class HomeComponent implements OnInit {
   @ViewChild('f') post: NgForm;
 
+  host = h.host;
   file = null;
 
   commentForPost: string[] = [];

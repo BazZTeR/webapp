@@ -5,6 +5,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { ProfileService } from '../services/profile.service';
 import { User } from '../entities/user';
 import { NotificationsService } from '../services/notifications.service';
+import * as h from '../host'; 
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
   adminSwitch = false;
   file = null;
   email: string;
+  host = h.host;
 
   constructor(private router:Router,private route: ActivatedRoute,private sessionSt:SessionStorageService,private profile:ProfileService,private notifications:NotificationsService) { }
 

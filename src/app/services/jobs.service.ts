@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class JobsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       })
     };
-    return this.http.get('http://localhost:8080/getjobs',httpOptions);
+    return this.http.get(h.host+'/getjobs',httpOptions);
   }
   postjob(jobname,description,skills){
     const httpOptions = {
@@ -24,7 +25,7 @@ export class JobsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')+":"+jobname+":"+description+":"+skills),
       })
     };
-    return this.http.get('http://localhost:8080/postjob',httpOptions);
+    return this.http.get(h.host+'/postjob',httpOptions);
   }
   applicatejob(jobid){
     const httpOptions = {
@@ -33,6 +34,6 @@ export class JobsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')+":"+jobid),
       })
     };
-    return this.http.get<boolean>('http://localhost:8080/applicatejob',httpOptions);
+    return this.http.get<boolean>(h.host+'/applicatejob',httpOptions);
   }
 }

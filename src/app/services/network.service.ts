@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class NetworkService {
       }),
       params: new HttpParams().set('name',name)
     };
-    return this.http.get('http://localhost:8080/search',httpOptions);
+    return this.http.get(h.host+'/search',httpOptions);
   }
 
   getNetworkUsers(email){
@@ -28,6 +29,6 @@ export class NetworkService {
       }),
       params: new HttpParams().set('email',email)
     };
-    return this.http.get('http://localhost:8080/networkUsers',httpOptions);
+    return this.http.get(h.host+'/networkUsers',httpOptions);
   }
 }

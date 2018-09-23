@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class HomeService {
       }),
       params: new HttpParams().set('postText',postText),
     };
-    return this.http.post<boolean>('http://localhost:8080/post',fd,httpOptions);
+    return this.http.post<boolean>(h.host+'/post',fd,httpOptions);
   }
 
   getArticles(){
@@ -28,7 +29,7 @@ export class HomeService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       }),
     };
-    return this.http.get('http://localhost:8080/articles',httpOptions);
+    return this.http.get(h.host+'/articles',httpOptions);
   }
 
   comment(articleId,commentText){
@@ -40,7 +41,7 @@ export class HomeService {
       params: new HttpParams().set('articleId',articleId).set('commentText',commentText),
 
     };
-    return this.http.post<boolean>('http://localhost:8080/comment',null,httpOptions);
+    return this.http.post<boolean>(h.host+'/comment',null,httpOptions);
   }
 
   getComments(articleId){
@@ -52,7 +53,7 @@ export class HomeService {
       params: new HttpParams().set('articleId',articleId)
 
     };
-    return this.http.get('http://localhost:8080/getComments',httpOptions);
+    return this.http.get(h.host+'/getComments',httpOptions);
   }
 
   like(articleId,status){
@@ -64,7 +65,7 @@ export class HomeService {
       params: new HttpParams().set('articleId',articleId).set('status',status),
 
     };
-    return this.http.post<boolean>('http://localhost:8080/like',null,httpOptions);
+    return this.http.post<boolean>(h.host+'/like',null,httpOptions);
   }
 
   getLike(articleId){
@@ -76,6 +77,6 @@ export class HomeService {
       params: new HttpParams().set('articleId',articleId)
 
     };
-    return this.http.get('http://localhost:8080/getLike',httpOptions);
+    return this.http.get(h.host+'/getLike',httpOptions);
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class NotificationsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       })
     };
-    return this.http.get('http://localhost:8080/friendRequests',httpOptions);
+    return this.http.get(h.host+'/friendRequests',httpOptions);
   }
 
   Accept(email){
@@ -26,7 +27,7 @@ export class NotificationsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       })
     };
-    return this.http.post('http://localhost:8080/accept',email,httpOptions);
+    return this.http.post(h.host+'/accept',email,httpOptions);
   }
 
   Decline(email){
@@ -36,7 +37,7 @@ export class NotificationsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       })
     };
-    return this.http.post('http://localhost:8080/decline',email,httpOptions);
+    return this.http.post(h.host+'/decline',email,httpOptions);
   }
 
   getAllComments(){
@@ -46,7 +47,7 @@ export class NotificationsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       })
     };
-    return this.http.get('http://localhost:8080/getAllComments',httpOptions);
+    return this.http.get(h.host+'/getAllComments',httpOptions);
   }
 
   getAllLikes(){
@@ -56,7 +57,7 @@ export class NotificationsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       })
     };
-    return this.http.get('http://localhost:8080/getAllLikes',httpOptions);
+    return this.http.get(h.host+'/getAllLikes',httpOptions);
   }
 
   getArticle(articleId){
@@ -68,6 +69,6 @@ export class NotificationsService {
       }),
       params: new HttpParams().set('articleId',articleId)
     };
-    return this.http.get('http://localhost:8080/getArticle',httpOptions);
+    return this.http.get(h.host+'/getArticle',httpOptions);
   }
 }

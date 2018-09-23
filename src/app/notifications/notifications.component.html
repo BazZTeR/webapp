@@ -43,13 +43,13 @@
           {{article.user.firstname}} {{article.user.lastname}} posted: <br> {{article.text}} 
           <br>
           <div *ngIf="article.file != null && article.file.indexOf('image')>-1">
-            <img src="http://localhost:8080/getFile/{{article.file}}">
+            <img src="{{host}}/getFile/{{article.file}}">
           </div>
           <div *ngIf="article.file != null && article.file.indexOf('video')>-1">
-            <video src="http://localhost:8080/getFile/{{article.file}}" controls></video>
+            <video src="{{host}}/getFile/{{article.file}}" controls></video>
           </div>
           <div *ngIf="article.file != null && article.file.indexOf('audio')>-1">
-            <audio src="http://localhost:8080/getFile/{{article.file}}" controls></audio>
+            <audio src="{{host}}/getFile/{{article.file}}" controls></audio>
           </div>
           <br>
           <button class="button4" (click)="onLike(article.id,article.like.status)">{{article.like.status}}</button>

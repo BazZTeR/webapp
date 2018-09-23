@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionStorageService } from 'ngx-webstorage';
+import * as h from '../host'; 
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,6 @@ export class LoginService {
         'Authorization': 'Basic ' + btoa(email+':'+password)
       }),
     };
-    return this.http.get<boolean>('http://localhost:8080/login',httpOptions);
+    return this.http.get<boolean>(h.host+'/login',httpOptions);
   }
 }
