@@ -28,12 +28,11 @@
       </div>
       <div class="container">
         <table>
-          <tr *ngFor="let comment of comments">
-            <th><a href="profile/{{comment.user.email}}">{{comment.user.firstname}} {{comment.user.lastname}}</a> commented on your <a href="notifications/{{comment.article.id}}">article</a>: <i>{{comment.text}}</i></th>
+          <tr *ngFor="let notification of allNotifications">
+            <th *ngIf="notification.text != null"><a href="profile/{{notification.user.email}}">{{notification.user.firstname}} {{notification.user.lastname}}</a> commented on your <a href="notifications/{{notification.article.id}}">article</a>: <i>{{notification.text}}</i></th>
+            <th *ngIf="notification.text == null"><a href="profile/{{notification.user.email}}">{{notification.user.firstname}} {{notification.user.lastname}}</a> liked your <a href="notifications/{{notification.article.id}}">article</a></th>
           </tr>
-          <tr *ngFor="let like of likes">
-            <th><a href="profile/{{like.user.email}}">{{like.user.firstname}} {{like.user.lastname}}</a> liked your <a href="notifications/{{like.article.id}}">article</a></th>
-          </tr>
+
         </table>
       </div>
     </ng-template>

@@ -15,13 +15,12 @@ import * as h from '../host';
 export class NotificationsComponent implements OnInit {
 
   users: User[] = [];
-  comments: Comment[] = [];
-  likes: MyLike[] = [];
   displaySwitch = true;
   articleId: string;
   article: Article;
   commentForPost: string;
   host=h.host;
+  allNotifications: any[] = [];
 
   constructor(private notifications:NotificationsService,private route: ActivatedRoute,private home:HomeService) { }
 
@@ -42,19 +41,23 @@ export class NotificationsComponent implements OnInit {
         (comments: any[]) => {
           console.log(comments);
           for(var i in comments){
-            this.comments[i] = comments[i];
+            this.allNotifications.push(comments[i]);
           }
+
+          this.notifications.getAllLikes().subscribe(
+            (likes: any[]) => {
+              console.log(likes);
+              for(var i in likes){
+                this.allNotifications.push(likes[i]);
+              }
+              this.allNotifications.sort((a,b) => (a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0));
+            }
+          )
+
         }
       )
 
-      this.notifications.getAllLikes().subscribe(
-        (likes: any[]) => {
-          console.log(likes);
-          for(var i in likes){
-            this.likes[i] = likes[i];
-          }
-        }
-      )
+  
     }
     else{//show only selected article page
       this.displaySwitch = false;
