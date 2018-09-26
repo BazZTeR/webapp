@@ -34,10 +34,16 @@ export class MessagesComponent implements OnInit {
       });
 
     this.email = this.route.snapshot.paramMap.get('email');
-    if(this.email === null){
-      this.messages.getLastChatUser().subscribe(
-        (friendEmail: string)=>{
-          this.email = friendEmail;
+
+    this.messages.getChatUsers().subscribe(
+      (users: any[]) => {
+        console.log(users);
+        for(var i in users){
+          this.friends[i] = users[i];
+        }
+
+        if(this.email === null){
+          this.email = this.friends[0].email;
           this.messages.getChat(this.email).subscribe(
             (chat: Message[])=>{
               this.profile.getUser(this.email).subscribe(
@@ -49,30 +55,21 @@ export class MessagesComponent implements OnInit {
               }
             }
           );
-          
         }
-      )
-    }
-    else{
-      this.messages.getChat(this.email).subscribe(
-        (chat: Message[])=>{
-          this.profile.getUser(this.email).subscribe(
-            (user: User)=>{
-              this.friend = user;
-            });
-          for(var i in chat){
-            this.mymessages[i] = chat[i];
-          }
+        else{
+          this.messages.getChat(this.email).subscribe(
+            (chat: Message[])=>{
+              this.profile.getUser(this.email).subscribe(
+                (user: User)=>{
+                  this.friend = user;
+                });
+              for(var i in chat){
+                this.mymessages[i] = chat[i];
+              }
+            }
+          );
         }
-      );
-    }
 
-    this.messages.getChatUsers().subscribe(
-      (users: any[]) => {
-        console.log(users);
-        for(var i in users){
-          this.friends[i] = users[i];
-        }
       }
     );
   }

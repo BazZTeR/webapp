@@ -20,17 +20,6 @@ export class MessagesService {
     return this.http.get(h.host+'/getLatestChats',httpOptions);
   }
 
-  getLastChatUser(){
-    const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
-        }),
-        responseType: 'text' as 'text',
-      };
-      return this.http.get(h.host+'/getLastChat',httpOptions);
-  }
-
   getChat(email){
     const httpOptions = {
         headers: new HttpHeaders({

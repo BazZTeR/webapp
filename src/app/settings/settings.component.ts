@@ -13,7 +13,13 @@ export class SettingsComponent{
 
   onSubmit(){
     console.log(this.updateform);
-    this.update.updateCredentials(this.updateform.value.email,this.updateform.value.password).subscribe();
+    this.update.updateCredentials(this.updateform.value.email,this.updateform.value.password).subscribe(
+      (res)=>{
+        if(res == false){
+          window.alert("Invalid credentials");
+        }
+      }
+    );
   }
 
 }
