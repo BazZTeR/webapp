@@ -73,7 +73,9 @@ body{
     font-size: 16px;
     cursor: pointer;
     display:block;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .applicationbutton{
@@ -87,7 +89,9 @@ body{
     font-size: 16px;
     cursor: pointer;
     display:block;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 h2{
@@ -109,7 +113,7 @@ h2{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.list ul {
+ul {
     padding: 0px;
     list-style-type: none;
 }

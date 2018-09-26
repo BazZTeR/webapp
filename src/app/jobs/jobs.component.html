@@ -28,9 +28,11 @@
                   <p>Skills needed: {{job.skills}}</p>
                   <div class="scroll"><p>Description: {{job.description}}</p></div>
                   <div class="scroll">
-                    <p>Applicants:</p>
-                    <ul *ngFor="let applicant of job.applicants">
-                      <b><a href="profile/{{applicant.email}}">{{applicant.firstname}} {{applicant.lastname}}</a></b>
+                    <span>Applicants:</span> 
+                    <ul>
+                      <li *ngFor="let applicant of job.applicants">
+                        <a href="profile/{{applicant.email}}">{{applicant.firstname}} {{applicant.lastname}}</a>
+                      </li>
                     </ul>
                   </div>
                 </div>
