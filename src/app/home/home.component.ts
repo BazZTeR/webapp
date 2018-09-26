@@ -10,6 +10,7 @@ import { Comment } from '../entities/comment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import * as h from '../host'; 
+import { query } from '@angular/core/src/render3/query';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   host = h.host;
   file = null;
+  mypostswitch=false;
 
   commentForPost: string[] = [];
 
@@ -31,6 +33,8 @@ export class HomeComponent implements OnInit {
   constructor(private home:HomeService,private sessionSt:SessionStorageService,private profile:ProfileService) { }
 
   articles: Article[] = [];
+  myarticles: Article[] = [];
+  otherarticles: Article[] = [];
   commentsArray: Comment[][] = [];
   likesArray: MyLike[] = [];
   commentText: string;
@@ -79,9 +83,14 @@ export class HomeComponent implements OnInit {
                         }
                       }
                   });
-
+                  for(var i in this.articles)
+                  {
+                    if(this.articles[i].user.email==this.sessionSt.retrieve('email'))
+                      this.myarticles.push(this.articles[i]);
+                    else
+                      this.otherarticles.push(this.articles[i]);
+                  } 
             });
-
       }
     );
   }

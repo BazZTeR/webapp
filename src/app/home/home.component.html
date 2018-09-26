@@ -25,6 +25,10 @@
       <p><i class="fas fa-users"></i> <a href="network">Network</a> </p> 
       <p><i class="material-icons">email</i> {{user.email}}</p> 
       <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
+      <form (ngSubmit)="mypostSwitch=!mypostSwitch" #f="ngForm">
+        <button type="submit">Change Post View</button>
+      </form>
+
     </div>
     <div class="posts">
         <form (ngSubmit)="onSubmit()" #f="ngForm">
@@ -34,32 +38,63 @@
             <input type="submit" value="Submit">
           </div>
         </form>
-        <div class="list">
-          <ul>
-            <li *ngFor="let article of articles;let i = index;" class="article-container">
-              {{article.user.firstname}} {{article.user.lastname}} posted: <br> {{article.text}} 
-              <br>
-              <div *ngIf="article.file != null && article.file.indexOf('image')>-1">
-                <img src="{{host}}/getFile/{{article.file}}">
-              </div>
-              <div *ngIf="article.file != null && article.file.indexOf('video')>-1">
-                <video src="{{host}}/getFile/{{article.file}}" controls></video>
-              </div>
-              <div *ngIf="article.file != null && article.file.indexOf('audio')>-1">
-                <audio src="{{host}}/getFile/{{article.file}}" controls></audio>
-              </div>
-              <br>
-              <button class="button" (click)="onLike(article.id,article.like.status)">{{article.like.status}}</button>
-              <input type="text" placeholder="Post a comment..." [(ngModel)]="commentForPost[i]">
-              <button class="button" (click)="onPost(article.id,commentForPost[i])">Post</button>
-              <ul>
-                <li class="comment" *ngFor="let comment of commentsArray[i]">
-                    {{comment.user.firstname}} {{comment.user.lastname}}: {{comment.text}}
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <div *ngIf="mypostSwitch; then myposts; else otherposts"></div>
+        <ng-template #otherposts>
+          <div class="list">
+            <ul>
+              <li *ngFor="let article of otherarticles;let i = index;" class="article-container">
+                {{article.user.firstname}} {{article.user.lastname}} posted: <br> {{article.text}} 
+                <br>
+                <div *ngIf="article.file != null && article.file.indexOf('image')>-1">
+                  <img src="{{host}}/getFile/{{article.file}}">
+                </div>
+                <div *ngIf="article.file != null && article.file.indexOf('video')>-1">
+                  <video src="{{host}}/getFile/{{article.file}}" controls></video>
+                </div>
+                <div *ngIf="article.file != null && article.file.indexOf('audio')>-1">
+                  <audio src="{{host}}/getFile/{{article.file}}" controls></audio>
+                </div>
+                <br>
+                <button class="button" (click)="onLike(article.id,article.like.status)">{{article.like.status}}</button>
+                <input type="text" placeholder="Post a comment..." [(ngModel)]="commentForPost[i]">
+                <button class="button" (click)="onPost(article.id,commentForPost[i])">Post</button>
+                <ul>
+                  <li class="comment" *ngFor="let comment of commentsArray[i]">
+                      {{comment.user.firstname}} {{comment.user.lastname}}: {{comment.text}}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+        <ng-template #myposts>
+          <div class="list">
+            <ul>
+              <li *ngFor="let article of myarticles;let i = index;" class="article-container">
+                {{article.user.firstname}} {{article.user.lastname}} posted: <br> {{article.text}} 
+                <br>
+                <div *ngIf="article.file != null && article.file.indexOf('image')>-1">
+                  <img src="{{host}}/getFile/{{article.file}}">
+                </div>
+                <div *ngIf="article.file != null && article.file.indexOf('video')>-1">
+                  <video src="{{host}}/getFile/{{article.file}}" controls></video>
+                </div>
+                <div *ngIf="article.file != null && article.file.indexOf('audio')>-1">
+                  <audio src="{{host}}/getFile/{{article.file}}" controls></audio>
+                </div>
+                <br>
+                <button class="button" (click)="onLike(article.id,article.like.status)">{{article.like.status}}</button>
+                <input type="text" placeholder="Post a comment..." [(ngModel)]="commentForPost[i]">
+                <button class="button" (click)="onPost(article.id,commentForPost[i])">Post</button>
+                <ul>
+                  <li class="comment" *ngFor="let comment of commentsArray[i]">
+                      {{comment.user.firstname}} {{comment.user.lastname}}: {{comment.text}}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </ng-template>
     </div>
     
     
