@@ -33,9 +33,9 @@ export class JobsComponent implements OnInit {
           }
           this.jobs.push(jobs[i]);
           this.applicationstatus.push(false);
-          for(var j in jobs[i].applicant)
+          for(var j in jobs[i].applicants)
           {
-            if(jobs[i].applicant[j].email==this.myemail)
+            if(jobs[i].applicants[j].email==this.myemail)
             {
               this.applicationstatus[this.applicationstatus.length-1]=true;
               continue; 
