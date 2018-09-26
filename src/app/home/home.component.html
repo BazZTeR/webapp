@@ -25,8 +25,8 @@
       <p><i class="fas fa-users"></i> <a href="network">Network</a> </p> 
       <p><i class="material-icons">email</i> {{user.email}}</p> 
       <p><i class="material-icons">contact_phone</i> {{user.phone}}</p> 
-      <form (ngSubmit)="mypostSwitch=!mypostSwitch" #f="ngForm">
-        <button type="submit">Change Post View</button>
+      <form (ngSubmit)="mypostSwitch=!mypostSwitch">
+        <button class="changeViewButton" type="submit">Change Post View</button> 
       </form>
 
     </div>
