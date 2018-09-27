@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SettingsService } from '../services/settings.service';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-settings',
@@ -9,7 +10,7 @@ import { SettingsService } from '../services/settings.service';
 })
 export class SettingsComponent{
   @ViewChild('f') updateform: NgForm;
-  constructor(private update:SettingsService) { }
+  constructor(private update:SettingsService,private sessionSt:SessionStorageService) { }
 
   onSubmit(){
     console.log(this.updateform);
@@ -17,6 +18,10 @@ export class SettingsComponent{
       (res)=>{
         if(res == false){
           window.alert("Invalid credentials");
+        }
+        else{
+          this.sessionSt.store('email',this.updateform.value.email);
+          this.sessionSt.store('password',this.updateform.value.password);
         }
       }
     );

@@ -18,7 +18,6 @@ export class LoginComponent{
       res=>{
         console.log('res',res);
         if(res){
-          this.login.setLoggedin(res);
           if(this.loginform.value.email=="admin")
           {
             this.router.navigate(['admin']);

@@ -133,7 +133,6 @@ export class ProfileComponent implements OnInit {
     console.log(event);
     if(event.target.name === "workPrivacy"){
       this.user.workPrivacy = event.target.value;
-      console.log("workPrivacy = "+this.user.workPrivacy);
     }
     else if(event.target.name === "eduPrivacy"){
       this.user.eduPrivacy = event.target.value;

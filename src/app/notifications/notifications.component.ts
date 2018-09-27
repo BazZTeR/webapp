@@ -25,7 +25,7 @@ export class NotificationsComponent implements OnInit {
   constructor(private notifications:NotificationsService,private route: ActivatedRoute,private home:HomeService) { }
 
   ngOnInit() {
-    this.articleId = this.route.snapshot.paramMap.get('articleId'); // "+" converts string to int in TS awesome!!!
+    this.articleId = this.route.snapshot.paramMap.get('articleId');
     console.log("this.articleId: ",this.articleId);
     if(this.articleId==null){//regular notification page
       this.notifications.getFriendRequests().subscribe(

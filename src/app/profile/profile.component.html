@@ -142,6 +142,7 @@
                 <textarea placeholder="some text..." ngModel name="workExp" [(ngModel)]="user.workExp"></textarea>
               </div>
               <select name="workPrivacy" (change)="onPrivacyChange($event)">
+                <option disabled selected value> -- select an option -- </option>
                 <option value="private">Private</option>
                 <option value="public">Public</option>
               </select>
@@ -154,6 +155,7 @@
                 <textarea placeholder="some text..." ngModel name="eduExp" [(ngModel)]="user.eduExp"></textarea>
               </div>
               <select name="eduPrivacy" (change)="onPrivacyChange($event)">
+                <option disabled selected value> -- select an option -- </option>
                 <option value="private">Private</option>
                 <option value="public">Public</option>
               </select>
@@ -163,9 +165,10 @@
                 <h1>
                   <b>Skills</b>
                 </h1> 
-                <textarea placeholder="some text..." ngModel name="skillsExp" [(ngModel)]="user.skillsExp"></textarea>
+                <textarea placeholder="e.g. C,C++,Java" ngModel name="skillsExp" [(ngModel)]="user.skillsExp"></textarea>
               </div>
               <select name="skillsPrivacy" (change)="onPrivacyChange($event)">
+                <option disabled selected value> -- select an option -- </option>
                 <option value="private">Private</option>
                 <option value="public">Public</option>
               </select>

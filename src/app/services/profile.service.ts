@@ -49,10 +49,12 @@ export class ProfileService {
       headers: new HttpHeaders({
         //'Content-Type':  'application/json',
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
+        'workExp': workExp,
+        'eduExp': eduExp,
+        'skillsExp': skillsExp,
       }),
-      params: new HttpParams().set('name',name).set('phone',phone).set('workExp',workExp).set('eduExp',eduExp).set('skillsExp',skillsExp).set('workPrivacy',user.workPrivacy).set('eduPrivacy',user.eduPrivacy).set('skillsPrivacy',user.skillsPrivacy),
+      params: new HttpParams().set('name',name).set('phone',phone).set('workPrivacy',user.workPrivacy).set('eduPrivacy',user.eduPrivacy).set('skillsPrivacy',user.skillsPrivacy),
     };
-    console.log("workPrivacy = "+user.workPrivacy);
     return this.http.post(h.host+'/editProfile',fd,httpOptions);
   }
 }

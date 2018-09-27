@@ -17,8 +17,6 @@ export class SettingsService {
         'Authorization': 'Basic ' + btoa(this.sessionSt.retrieve('email')+':'+this.sessionSt.retrieve('password')),
       }),
     };
-    this.sessionSt.store('email',email);
-    this.sessionSt.store('password',password);
     return this.http.put<boolean>(h.host+'/settings',email+':'+password,httpOptions);
   }
 }

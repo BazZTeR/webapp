@@ -15,20 +15,20 @@ import { AuthGuard } from './auth.guard';
 import { MessagesComponent } from './messages/messages.component';
  
 const routes: Routes = [
-  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, /*canActivate: [AuthGuard]*/ },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'network', component: NetworkComponent },
-  { path: 'network/:email', component: NetworkComponent },
-  { path: 'profile/:email', component: ProfileComponent},
-  { path: 'notifications', component: NotificationsComponent},
-  { path: 'notifications/:articleId', component: NotificationsComponent},
-  { path: 'admin', component: AdminComponent },
-  { path: 'messages/:email', component: MessagesComponent },
-  { path: 'messages', component: MessagesComponent },
-  { path: 'jobs', component: JobsComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'network', component: NetworkComponent, canActivate: [AuthGuard] },
+  { path: 'network/:email', component: NetworkComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:email', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard]},
+  { path: 'notifications/:articleId', component: NotificationsComponent, canActivate: [AuthGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'messages/:email', component: MessagesComponent, canActivate: [AuthGuard] },
+  { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
+  { path: 'jobs', component: JobsComponent, canActivate: [AuthGuard] },
 ];
  
 @NgModule({

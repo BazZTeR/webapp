@@ -8,18 +8,7 @@ import * as h from '../host';
 })
 export class LoginService {
 
-  private loginStatus = false;
-
   constructor(private http:HttpClient,private sessionSt:SessionStorageService) { }
-
-  setLoggedin(value:boolean){
-    this.loginStatus = value;
-  }
-
-  isLoggedin(){
-    return this.loginStatus;
-  }
-
 
   login(email,password){
     this.sessionSt.store('email',email);
