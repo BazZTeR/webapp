@@ -58,15 +58,10 @@ export class ProfileComponent implements OnInit {
           this.user = user;
         }
       );
-      console.log("getStatus");
       this.profile.getFriendshipStatus(email).subscribe(
         status=>{
-          console.log("status: ", status);
           if(status === "Pending" || status === "Friends"){
             this.friendStatus = "Remove Friend";  
-          }
-          else{
-            this.friendStatus = status;
           }
         },
         error =>{
